@@ -42,3 +42,28 @@ X = [f1 f2]'
 
 # PCA only take input and produce no output
 model = fit(PCA,X;maxoutdim=1)
+
+# use tranform function to generate value for principal component
+X_transform = transform(model,X)
+
+# ploting a transform data 
+# the tranformed data must be transpose in order to be used in scatter
+y = zeros(100)
+p_transform = scatter(X_transform',
+                        y,
+                        xlabel = "PCA1",
+                        title = "Random Data Transform",
+                        legend = false,
+                        color = :red,
+                        alpha = 0.5)
+# reconstruct data from 1 to original 2
+X_recons = reconstruct(model,X_transform)
+# plot of reconstruct data
+scatter!(p_random,X_recons[1,:],
+                    X_recons[2,:],
+                    color= :red,
+                    alpha = 0.5)
+# the principal component is an abstraction or projection of original
+# higher dimension into lower dimension 
+
+savefig(p_random,"pca_plot.svg")
