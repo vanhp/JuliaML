@@ -4,7 +4,7 @@ using BenchmarkTools
 
 # define Constants
 const dim = 100_000_000
-const a = 3.1416
+const a = Float32(3.1416)
 
 # # SAXPY (CPU)
 # x = ones(Float32,dim)
